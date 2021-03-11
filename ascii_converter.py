@@ -43,5 +43,6 @@ def main(new_width=100):
     with open("ascii-image.txt", "w") as doc:
         doc.write(final_product)
         print("Finished!")
+        print("Finished!")
 
 main()
