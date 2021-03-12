@@ -1,5 +1,15 @@
-import PIL.Image
-import tkinter as tk
+
+try:
+    import PIL.Image
+except:
+    print("Pillow is not installed! Install it using the following command: 'pip3 install pillow'")
+    quit()
+
+try:
+    import tkinter as tk
+except:
+    print("tkinter is not installed! Install it using the following command: 'pip3 install tkinter'")
+    
 
 ASCII_CHARS = ["@","#","S","%","?","*","+",";",":",",","."," "]
 
