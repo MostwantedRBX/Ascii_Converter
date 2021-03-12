@@ -1,7 +1,5 @@
 import PIL.Image
-import pathlib
 
-current_path = pathlib.Path(__file__).parent.absolute()
 
 ASCII_CHARS = ["@","#","S","%","?","*","+",";",":",",","."," "]
 
@@ -25,9 +23,8 @@ def convert_to_ascii(image):
 
 def main(new_width=100):
     
-    
     try:
-        image=PIL.Image.open("pic.jpg")
+        image = PIL.Image.open("pic.jpg")
     except:
         print("Please rename the file to 'pic.jpg' and restart the script")
         quit()
