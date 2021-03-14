@@ -34,7 +34,7 @@ def convert_to_ascii(image):
     return(characters)
 
 
-def con_image(image=PIL.Image.open("pic.jpg"),new_width=50):
+def con_image(image,new_width=50):
     
     new_image_in_chars = convert_to_ascii(convert_to_grayscale(image_resize(image)))
     
