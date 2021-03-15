@@ -1,4 +1,5 @@
 ## import packages, if they don't have em it'll tell them to get them.
+import time
 try:
     import PIL.Image
 except:
@@ -7,6 +8,7 @@ except:
 
 try:
     import tkinter as tk
+    from tkinter import filedialog
 except:
     print("tkinter is not installed! Install it using the following command: 'pip3 install tkinter'")
     
@@ -58,7 +60,7 @@ class Application(tk.Frame):
         self.master = master
         self.pack()
         self.create_widgets()
-        self.pic_path = "pic.jpg"
+        self.pic_path = ""
         
     ## Create elements on the window
     def create_widgets(self):
@@ -67,21 +69,23 @@ class Application(tk.Frame):
         self.lab = tk.Label(self,text="Please enter the name of the picture, including extension:")
         self.lab.pack(side="top",pady=5)
 
-        self.entry = tk.Entry(self,width=20)
-        self.entry.pack(side="top",pady=5)
+        self.filelab = tk.Label(self,text = "Current Selected File: ")
+        self.filelab.pack(side="top",pady=5)
 
-        self.convert = tk.Button(self,text="IMAGE_TO_ASCII",command=self.convert_click)
+        self.selImage = tk.Button(self,width=97,text="Select File",command=self.defineTarget)
+        self.selImage.pack(side="top",pady=5)
+
+        self.convert = tk.Button(self,width=97,text="IMAGE_TO_ASCII",command=self.convert_click)
         self.convert.pack(side="top",pady=5)
 
         self.output = tk.Label(self)
         self.output.pack(side="top",pady=5)
 
-        self.quit = tk.Button(self,text="Close",command=self.master.destroy)
+        self.quit = tk.Button(self,width=97,text="Close",command=self.master.destroy)
         self.quit.pack(side="bottom", pady=5)
 
     # Fetch text in textbox
     def get_entry(self):
-        self.pic_path = self.entry.get()
         return self.pic_path
 
     def convert_click(self):
@@ -93,6 +97,10 @@ class Application(tk.Frame):
             
         con_image(im)
 
+    def defineTarget(self):
+        self.pic_path = filedialog.askopenfilename(initialdir="", title="select file")
+        self.filelab["text"] = "Currently Selected File: " + self.pic_path
+
 ####/Window Stuffs/####
 
 
@@ -101,7 +109,7 @@ class Application(tk.Frame):
 
 #### Opens the Window
 root = tk.Tk()
-root.geometry("320x170")
+root.geometry("700x200")
 root.title("Image to Ascii Converter")
 app = Application(master=root)
 app.mainloop()
